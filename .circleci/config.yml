@@ -8,7 +8,20 @@ jobs:
       - checkout # check out the code in the project directory
       - run: echo "hello world" # run the `echo` command
 
+  print-a-message:
+    macos:
+      xcode: 13.4.1
+    parameters:
+      message:
+        type: string
+    steps:
+      - run: echo << parameters.message >>
+
 workflows:
   my-workflow:
     jobs:
       - hello-job
+  my-workflow-2:
+    jobs:
+      - print-a-message:
+          message: Hello!
